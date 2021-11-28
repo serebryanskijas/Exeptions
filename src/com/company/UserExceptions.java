@@ -18,9 +18,10 @@ public class UserExceptions {
      //   int b = scanner.nextInt();
         // validateEven(a);
        // validate(b);
-        System.out.println("Enter your name");
-        String s = scanner.nextLine();
-        Person person = new Person(s);
+        //System.out.println("Enter your name");
+        //String s = scanner.nextLine();
+       // Person person = new Person(s);
+        Person.getCaller();
 
 
     }
@@ -36,6 +37,8 @@ public class UserExceptions {
             throw new NotNumberException("Веденное число не в диапазоне от 1 до 10");
         }
     }
+
+
 }
 
 class NotEvenException extends Exception {
@@ -72,4 +75,18 @@ class Person{
             super(message);
         }
     }
+
+   public static void getCaller(){
+        Exception e = new Exception();
+        String className = e.getStackTrace()[1].getClassName();
+       System.out.println(className);
+       String methodName = e.getStackTrace()[1].getMethodName();
+       System.out.println(methodName);
+       int line = e.getStackTrace()[1].getLineNumber();
+       System.out.println(line);
+    }
 }
+
+
+//Вывести в консоль имя вызывающего его класса и метода (раскручивание стека вызовов).
+
